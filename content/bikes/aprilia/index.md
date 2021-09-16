@@ -1,3 +1,4 @@
 ---
 make: Aprilia
+slug: aprilia
 ---

@@ -2,6 +2,7 @@ import Layout from "../components/layout";
 import { getAllBikes } from "../lib/bikes";
 
 export default function Home({ allBikes }) {
+	console.log(allBikes);
 	return (
 		<Layout>
 			<div className="grid"></div>

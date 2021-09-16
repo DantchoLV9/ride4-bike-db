@@ -1,4 +1,3 @@
 ---
-make: Aprilia
-model: RSV Mille Tuono
+model: Tuono V4 1100 Factory
 ---
