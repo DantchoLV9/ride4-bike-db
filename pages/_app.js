@@ -1,4 +1,6 @@
-import "tailwindcss/tailwind.css";
+import "@fontsource/barlow";
+import "@fontsource/barlow/600.css";
+import "../styles/global.css";
 
 function MyApp({ Component, pageProps }) {
 	return <Component {...pageProps} />;
