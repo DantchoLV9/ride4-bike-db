@@ -1,6 +1,28 @@
 import Image from "next/image";
 
 const BikeCard = ({ bikeData }) => {
+	let typeBGColor = "bg-white";
+	switch (bikeData.type) {
+		case "supermotard":
+			typeBGColor = "bg-coolGray-100";
+			break;
+		case "naked":
+			typeBGColor = "bg-blue-400";
+			break;
+		case "sport":
+			typeBGColor = "bg-yellow-300";
+			break;
+		case "naked racing modified":
+			typeBGColor = "bg-purple-400";
+			break;
+		case "sport racing modified":
+			typeBGColor = "bg-red-300";
+			break;
+		case "endurance modified":
+			typeBGColor = "bg-green-400";
+			break;
+	}
+
 	return (
 		<div>
 			<div className="rounded-lg overflow-hidden shadow-md bg-white relative">
@@ -16,7 +38,9 @@ const BikeCard = ({ bikeData }) => {
 						<span className="px-2 py-1 font-semibold">{bikeData.make}</span>
 						{bikeData.model}
 					</h2>
-					<h2 className="uppercase font-semibold px-2 py-2 text-center bg-blue-500">
+					<h2
+						className={`uppercase font-semibold px-2 py-2 text-center ${typeBGColor}`}
+					>
 						{bikeData.type}
 					</h2>
 				</div>

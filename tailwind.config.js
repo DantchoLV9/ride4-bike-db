@@ -8,7 +8,12 @@ module.exports = {
 			bg: "#f3f5f9",
 			fg: "#333534",
 			white: colors.white,
+			coolGray: colors.coolGray,
 			blue: colors.blue,
+			red: colors.red,
+			green: colors.green,
+			purple: colors.purple,
+			yellow: colors.yellow,
 		},
 		fontFamily: {
 			body: ['"Barlow"'],

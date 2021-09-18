@@ -15,4 +15,5 @@ headlights: true
 type: naked
 price: 66500
 rating: 676
+legendary: false
 ---
