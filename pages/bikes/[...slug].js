@@ -8,10 +8,17 @@ export default function Bike({ bikeData }) {
 	return (
 		<Layout>
 			<div className="w-full">
-				<h2 className="text-3xl mb-8">
-					<span className="font-semibold">{bikeData.make}</span>{" "}
-					{bikeData.model}
-				</h2>
+				<div className="flex items-center mb-8">
+					<h2 className="text-3xl">
+						<span className="font-semibold ">{bikeData.make}</span>{" "}
+						{bikeData.model}
+					</h2>
+					{bikeData.legendary && (
+						<span className="uppercase font-bold bg-yellow-400 px-1.5 rounded-md ml-4">
+							Legendary
+						</span>
+					)}
+				</div>
 				<div className="flex flex-row gap-x-6">
 					<div className="flex-2">
 						<div className="rounded-md overflow-hidden ">
@@ -21,7 +28,6 @@ export default function Bike({ bikeData }) {
 								width="1920"
 								height="1080"
 								layout="responsive"
-								quality="100"
 							/>
 						</div>
 					</div>
