@@ -6,10 +6,13 @@ const Layout = ({ children }) => {
 			<header className="flex justify-between px-20 py-4 text-xl shadow mb-8 bg-white">
 				<Link href="/">
 					<a>
-						<h1 className="uppercase">Ride 4 - Bikes</h1>
+						<h1 className="uppercase font-medium">
+							<span className="font-bold italic">Ride</span>{" "}
+							<span className="font-bold italic text-blue-500">4</span> | Bikes
+						</h1>
 					</a>
 				</Link>
-				<nav className="uppercase">
+				<nav className="uppercase font-medium">
 					<Link href="/">
 						<a>Home</a>
 					</Link>

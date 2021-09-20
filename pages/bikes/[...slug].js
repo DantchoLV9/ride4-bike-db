@@ -9,7 +9,8 @@ export default function Bike({ bikeData }) {
 		<Layout>
 			<div className="w-full">
 				<h2 className="text-3xl mb-8">
-					<span className="font-bold">{bikeData.make}</span> {bikeData.model}
+					<span className="font-semibold">{bikeData.make}</span>{" "}
+					{bikeData.model}
 				</h2>
 				<div className="flex flex-row gap-x-6">
 					<div className="flex-2">
@@ -26,7 +27,7 @@ export default function Bike({ bikeData }) {
 					</div>
 					<div className="flex-1">
 						<div className="mb-10">
-							<h3 className="font-bold text-xl mb-2">Performance</h3>
+							<h3 className="font-semibold text-xl mb-2">Performance</h3>
 							<ProgressBar
 								dataName="Acceleration"
 								data={bikeData.acceleration}
@@ -39,7 +40,7 @@ export default function Bike({ bikeData }) {
 							/>
 						</div>
 						<div className="mb-10">
-							<h3 className="font-bold text-xl mb-2">Technical Data</h3>
+							<h3 className="font-semibold text-xl mb-2">Technical Data</h3>
 							<div className="grid grid-cols-2 gap-y-2">
 								<div>
 									<h4 className="font-medium">Displacement</h4>
@@ -86,7 +87,7 @@ export default function Bike({ bikeData }) {
 							</div>
 						</div>
 						<div>
-							<h3 className="font-bold text-xl mb-2">Other</h3>
+							<h3 className="font-semibold text-xl mb-2">Other</h3>
 							<div className="grid grid-cols-2 gap-y-2">
 								<div>
 									<h4 className="font-medium">Legendary</h4>
