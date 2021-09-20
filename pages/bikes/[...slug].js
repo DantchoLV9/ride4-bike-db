@@ -2,17 +2,56 @@ import Layout from "../../components/Layout";
 import { getBikeBySlug, getAllBikeSlugs } from "../../lib/bikes";
 import Image from "next/image";
 import ProgressBar from "../../components/ProgressBar";
+import Head from "next/head";
 
 export default function Bike({ bikeData }) {
+	let typeColor = "";
+	let ratingLetter = "";
+	switch (bikeData.type) {
+		case "supermotard":
+			typeColor = "bg-blue-300";
+			ratingLetter = "M";
+			break;
+		case "naked":
+			typeColor = "bg-blue-300";
+			ratingLetter = "N";
+			break;
+		case "sport":
+			typeColor = "bg-blue-300";
+			ratingLetter = "S";
+			break;
+		case "naked racing modified":
+			typeColor = "bg-red-300";
+			ratingLetter = "N";
+			break;
+		case "sport racing modified":
+			typeColor = "bg-red-300";
+			ratingLetter = "S";
+			break;
+		case "endurance modified":
+			typeColor = "bg-green-300";
+			ratingLetter = "S";
+			break;
+	}
 	console.log(bikeData);
 	return (
 		<Layout>
+			<Head>
+				<title>
+					{bikeData.make} {bikeData.model} | Ride 4 - Bikes
+				</title>
+			</Head>
 			<div className="w-full">
 				<div className="flex items-center mb-8">
 					<h2 className="text-3xl">
 						<span className="font-semibold ">{bikeData.make}</span>{" "}
 						{bikeData.model}
 					</h2>
+					{bikeData.dlc && (
+						<span className="uppercase font-bold bg-purple-400 px-1.5 rounded-md ml-4">
+							DLC
+						</span>
+					)}
 					{bikeData.legendary && (
 						<span className="uppercase font-bold bg-yellow-400 px-1.5 rounded-md ml-4">
 							Legendary
@@ -37,12 +76,22 @@ export default function Bike({ bikeData }) {
 							<ProgressBar
 								dataName="Acceleration"
 								data={bikeData.acceleration}
+								color={typeColor}
 							/>
-							<ProgressBar dataName="Top speed" data={bikeData["top-speed"]} />
-							<ProgressBar dataName="Handling" data={bikeData.handling} />
+							<ProgressBar
+								dataName="Top speed"
+								data={bikeData["top-speed"]}
+								color={typeColor}
+							/>
+							<ProgressBar
+								dataName="Handling"
+								data={bikeData.handling}
+								color={typeColor}
+							/>
 							<ProgressBar
 								dataName="Braking power"
 								data={bikeData["braking-power"]}
+								color={typeColor}
 							/>
 						</div>
 						<div className="mb-10">
@@ -105,15 +154,25 @@ export default function Bike({ bikeData }) {
 								</div>
 								<div>
 									<h4 className="font-medium">Rating</h4>
-									<div>{bikeData.rating}</div>
+									<span
+										className={`font-bold ${typeColor} px-1.5 py-0.5 rounded-md`}
+									>{`${ratingLetter} ${bikeData.rating}`}</span>
 								</div>
 								<div>
 									<h4 className="font-medium">Type</h4>
-									<div className="capitalize">{bikeData.type}</div>
+									<span
+										className={`capitalize font-bold ${typeColor} px-1.5 py-0.5 rounded-md`}
+									>
+										{bikeData.type}
+									</span>
 								</div>
 								<div>
 									<h4 className="font-medium">Year</h4>
 									<div>{bikeData.year}</div>
+								</div>
+								<div>
+									<h4 className="font-medium">DLC</h4>
+									<div>{bikeData.dlc ? "Yes" : "No"}</div>
 								</div>
 							</div>
 						</div>

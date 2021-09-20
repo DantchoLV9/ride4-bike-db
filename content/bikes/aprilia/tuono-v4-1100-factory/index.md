@@ -16,4 +16,5 @@ type: naked
 price: 155800
 rating: 805
 legendary: false
+dlc: false
 ---

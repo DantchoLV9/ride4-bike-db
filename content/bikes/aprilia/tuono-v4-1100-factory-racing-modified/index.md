@@ -16,4 +16,5 @@ type: naked racing modified
 price: 311600
 rating: 866
 legendary: false
+dlc: false
 ---

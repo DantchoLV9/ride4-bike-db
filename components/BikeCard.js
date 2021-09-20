@@ -5,22 +5,22 @@ const BikeCard = ({ bikeData }) => {
 	let typeBGColor = "bg-white";
 	switch (bikeData.type) {
 		case "supermotard":
-			typeBGColor = "bg-coolGray-100";
+			typeBGColor = "bg-blue-300";
 			break;
 		case "naked":
-			typeBGColor = "bg-blue-400";
+			typeBGColor = "bg-blue-300";
 			break;
 		case "sport":
-			typeBGColor = "bg-yellow-300";
+			typeBGColor = "bg-blue-300";
 			break;
 		case "naked racing modified":
-			typeBGColor = "bg-purple-400";
+			typeBGColor = "bg-red-300";
 			break;
 		case "sport racing modified":
 			typeBGColor = "bg-red-300";
 			break;
 		case "endurance modified":
-			typeBGColor = "bg-green-400";
+			typeBGColor = "bg-green-300";
 			break;
 	}
 

@@ -16,4 +16,5 @@ type: endurance modified
 price: 459000
 rating: 771
 legendary: true
+dlc: false
 ---

@@ -16,4 +16,5 @@ type: supermotard
 price: 51500
 rating: 454
 legendary: false
+dlc: false
 ---
