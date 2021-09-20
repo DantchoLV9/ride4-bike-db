@@ -41,7 +41,7 @@ export default function Bike({ bikeData }) {
 					{bikeData.make} {bikeData.model} | Ride 4 - Bikes
 				</title>
 			</Head>
-			<div className="w-full">
+			<div className="w-full mb-16">
 				<div className="flex items-center mb-8">
 					<h2 className="text-3xl">
 						<span className="font-semibold ">{bikeData.make}</span>{" "}
@@ -58,8 +58,8 @@ export default function Bike({ bikeData }) {
 						</span>
 					)}
 				</div>
-				<div className="flex flex-row gap-x-6">
-					<div className="flex-2">
+				<div className="flex flex-col lg:flex-row gap-x-6">
+					<div className="flex-2 mb-10 lg:mb-0">
 						<div className="rounded-md overflow-hidden ">
 							<Image
 								src={bikeData.image}
@@ -96,7 +96,7 @@ export default function Bike({ bikeData }) {
 						</div>
 						<div className="mb-10">
 							<h3 className="font-semibold text-xl mb-2">Technical Data</h3>
-							<div className="grid grid-cols-2 gap-y-2">
+							<div className="grid grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-y-2">
 								<div>
 									<h4 className="font-medium">Displacement</h4>
 									<div>
@@ -143,7 +143,7 @@ export default function Bike({ bikeData }) {
 						</div>
 						<div>
 							<h3 className="font-semibold text-xl mb-2">Other</h3>
-							<div className="grid grid-cols-2 gap-y-2">
+							<div className="grid grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-y-2">
 								<div>
 									<h4 className="font-medium">Legendary</h4>
 									<div>{bikeData.legendary ? "Yes" : "No"}</div>
@@ -154,17 +154,11 @@ export default function Bike({ bikeData }) {
 								</div>
 								<div>
 									<h4 className="font-medium">Rating</h4>
-									<span
-										className={`font-bold ${typeColor} px-1.5 py-0.5 rounded-md`}
-									>{`${ratingLetter} ${bikeData.rating}`}</span>
+									<div>{`${ratingLetter} ${bikeData.rating}`}</div>
 								</div>
 								<div>
 									<h4 className="font-medium">Type</h4>
-									<span
-										className={`capitalize font-bold ${typeColor} px-1.5 py-0.5 rounded-md`}
-									>
-										{bikeData.type}
-									</span>
+									<div className="capitalize">{bikeData.type}</div>
 								</div>
 								<div>
 									<h4 className="font-medium">Year</h4>
