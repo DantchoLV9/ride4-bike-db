@@ -33,7 +33,6 @@ export default function Bike({ bikeData }) {
 			ratingLetter = "S";
 			break;
 	}
-	console.log(bikeData);
 	return (
 		<Layout>
 			<Head>
