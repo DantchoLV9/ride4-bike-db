@@ -36,6 +36,16 @@ const BikeCard = ({ bikeData }) => {
 							height="1080"
 							layout="responsive"
 						/>
+						{bikeData.legendary && (
+							<div className="bg-yellow-500 w-6/12 top-1/10 left-16/25 text-center text-white font-bold absolute transform rotate-45">
+								Legendary
+							</div>
+						)}
+						{bikeData.dlc && (
+							<div className="bg-purple-500 w-4/12 top-1/20 -left-1/10 text-center text-white font-bold absolute transform -rotate-45">
+								DLC
+							</div>
+						)}
 						<div className="overflow-hidden">
 							<h2 className="px-2 py-1 text-center text-lg h-auto bg-white">
 								<span className="px-2 py-1 font-semibold">{bikeData.make}</span>
