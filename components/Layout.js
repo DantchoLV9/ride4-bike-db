@@ -18,7 +18,7 @@ const Layout = ({ children }) => {
 					</Link>
 				</nav>
 			</header>
-			<div className="flex m-auto w-fill px-3.5 md:px-0 md:w-3/4">
+			<div className="flex m-auto flex-col w-fill px-3.5 md:px-0 md:w-3/4">
 				{children}
 			</div>
 		</div>
