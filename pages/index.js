@@ -3,6 +3,17 @@ import { getAllBikes } from "../lib/bikes";
 import Head from "next/head";
 import { useState } from "react";
 import BikeGallery from "../components/BikeGallery";
+import {
+	SortData,
+	SetSortByHandler,
+	SetSortOrderHandler,
+} from "../lib/sorting";
+
+import {
+	SetFilterByHandler,
+	SetFilterDetailsHandler,
+	FilterData,
+} from "../lib/filtering";
 
 export default function Home({ data }) {
 	const allBikes = [];
@@ -26,134 +37,36 @@ export default function Home({ data }) {
 				}, {}),
 		})
 	);
-	const [displayData, setDisplayData] = useState(allBikes);
+
+	const [displayData, setDisplayData] = useState(
+		SortData(allBikes, "make").reverse()
+	);
 	const [sortingOrder, setSortingOrder] = useState("accending");
 	const [sortKey, setSortKey] = useState("make");
+	const [displaySortKey, setDisplaySortKey] = useState("make");
 	const [filterBy, setFilterBy] = useState("make");
-	const SortByInputHandler = (e) => {
-		switch (e.target.value) {
-			case "make":
-				setDisplayData(allBikes);
-				setSortKey("make");
-				break;
-			case "year":
-				setDisplayData(sortBikes(allBikes, "year"));
-				setSortKey("year");
-				break;
-			case "displacement":
-				setDisplayData(sortBikes(allBikes, "displacement"));
-				setSortKey("displacement");
-				break;
-			case "power":
-				setDisplayData(sortBikes(allBikes, "power", true));
-				setSortKey("power");
-				break;
-			case "torque":
-				setDisplayData(sortBikes(allBikes, "torque", true));
-				setSortKey("torque");
-				break;
-			case "weight":
-				setDisplayData(sortBikes(allBikes, "weight", true));
-				setSortKey("weight");
-				break;
-			case "price":
-				setDisplayData(sortBikes(allBikes, "price"));
-				setSortKey("price");
-				break;
-			case "rating":
-				setDisplayData(sortBikes(allBikes, "rating"));
-				setSortKey("rating");
-				break;
-			case "acceleration":
-				setDisplayData(sortBikes(allBikes, "acceleration"));
-				setSortKey("acceleration");
-				break;
-			case "top-speed":
-				setDisplayData(sortBikes(allBikes, "top-speed"));
-				setSortKey("top-speed");
-				break;
-			case "handling":
-				setDisplayData(sortBikes(allBikes, "handling"));
-				setSortKey("handling");
-				break;
-			case "braking-power":
-				setDisplayData(sortBikes(allBikes, "braking-power"));
-				setSortKey("braking-power");
-				break;
-			default:
-				setDisplayData(allBikes);
-				setSortKey("make");
-				break;
-		}
-	};
-	const SortOrderInputHandler = (e) => {
-		if (e.target.value === "accending") {
-			if (sortingOrder === "descending") {
-				let data = [...displayData];
-				setDisplayData(data.reverse());
-				setSortingOrder("accending");
-			}
-		} else if (e.target.value === "descending") {
-			if (sortingOrder === "accending") {
-				let data = [...displayData];
-				setDisplayData(data.reverse());
-				setSortingOrder("descending");
-			}
-		}
-	};
-	const sortBikes = (data, key, possibleNoData = false) => {
-		let arr = [...data];
-		let noPowerDataArr = [];
-		if (possibleNoData) {
-			arr.forEach((item, index) => {
-				if (item.power === "--") {
-					noPowerDataArr.push(item);
-					arr.splice(index, 1);
-				}
-			});
-		}
-		arr.sort((a, b) => {
-			return b[key] > a[key] ? 1 : b[key] < a[key] ? -1 : 0;
-		});
-		if (possibleNoData) {
-			arr.push(...noPowerDataArr);
-		}
-		return arr;
-	};
-	const FilterByInputHandler = (e) => {
-		switch (e.target.value) {
-			case "make":
-				setFilterBy("make");
-				break;
-			case "type":
-				setFilterBy("type");
-				break;
-			case "dlc":
-				setFilterBy("dlc");
-				break;
-			case "legendary":
-				setFilterBy("legendary");
-				break;
-			default:
-				setFilterBy("make");
-				break;
-		}
-	};
-	const FilterByDetailsInputHandler = (e, key, onlyBool = false) => {
-		if (onlyBool) {
-			let isTrue = e.target.value === "true";
-			if (e.target.value === "All") {
-				setDisplayData(allBikes);
-			} else {
-				setDisplayData(allBikes.filter((bike) => bike[key] === isTrue));
-			}
+	const [filterDetail, setFilterDetail] = useState("All");
+
+	const TriggerSortAndFilterHandler = () => {
+		let data;
+		if (filterBy === "dlc" || filterBy === "legendary") {
+			data = FilterData(allBikes, filterDetail, filterBy, true);
 		} else {
-			if (e.target.value === "All") {
-				setDisplayData(allBikes);
-			} else {
-				setDisplayData(allBikes.filter((bike) => bike[key] === e.target.value));
+			data = FilterData(allBikes, filterDetail, filterBy);
+		}
+		if (sortKey === "power" || sortKey === "torque" || sortKey === "weight") {
+			data = SortData(data, sortKey, true);
+		} else {
+			data = SortData(data, sortKey);
+			if (sortKey === "make") {
+				data.reverse();
 			}
 		}
+		if (sortingOrder !== "accending") {
+			data.reverse();
+		}
+		setDisplaySortKey(sortKey);
+		setDisplayData(data);
 	};
 	return (
 		<Layout>
@@ -164,7 +77,11 @@ export default function Home({ data }) {
 				<div className="flex items-center justify-center flex-col gap-2 sm:gap-0 sm:flex-row sm:justify-start">
 					<label className="mr-2">Sort by:</label>
 					<div>
-						<select className="p-2 rounded-l" onChange={SortByInputHandler}>
+						<select
+							className="p-2 rounded-l bg-white"
+							onChange={(e) => SetSortByHandler(e, setSortKey, setSortingOrder)}
+							value={sortKey}
+						>
 							<option value="make">Make</option>
 							<option value="year">Year</option>
 							<option value="displacement">Displacement</option>
@@ -178,7 +95,11 @@ export default function Home({ data }) {
 							<option value="handling">Handling</option>
 							<option value="braking-power">Braking power</option>
 						</select>
-						<select className="p-2 rounded-r" onChange={SortOrderInputHandler}>
+						<select
+							className="p-2 rounded-r"
+							onChange={(e) => SetSortOrderHandler(e, setSortingOrder)}
+							value={sortingOrder}
+						>
 							<option value="accending">Accending</option>
 							<option value="descending">Descending</option>
 						</select>
@@ -186,8 +107,14 @@ export default function Home({ data }) {
 				</div>
 				<div className="flex items-center justify-center flex-col gap-2 sm:gap-0 sm:flex-row sm:justify-start">
 					<label className="mr-2">Filter by:</label>
-					<div>
-						<select className="p-2 rounded-l" onChange={FilterByInputHandler}>
+					<div className="mr-2">
+						<select
+							className="p-2 rounded-l"
+							onChange={(e) =>
+								SetFilterByHandler(e, setFilterBy, setFilterDetail)
+							}
+							value={filterBy}
+						>
 							<option value="make">Make</option>
 							<option value="type">Type</option>
 							<option value="dlc">DLC</option>
@@ -196,7 +123,8 @@ export default function Home({ data }) {
 						{filterBy === "make" ? (
 							<select
 								className="p-2 rounded-r"
-								onChange={(e) => FilterByDetailsInputHandler(e, "make")}
+								onChange={(e) => SetFilterDetailsHandler(e, setFilterDetail)}
+								value={filterDetail}
 							>
 								<option value="All">All</option>
 								{allMakes.map((make) => (
@@ -211,7 +139,8 @@ export default function Home({ data }) {
 						{filterBy === "type" ? (
 							<select
 								className="p-2 rounded-r"
-								onChange={(e) => FilterByDetailsInputHandler(e, "type")}
+								onChange={(e) => SetFilterDetailsHandler(e, setFilterDetail)}
+								value={filterDetail}
 							>
 								<option value="All">All</option>
 								{allTypes.map((type) => (
@@ -230,7 +159,8 @@ export default function Home({ data }) {
 						{filterBy === "dlc" || filterBy === "legendary" ? (
 							<select
 								className="p-2 rounded-r"
-								onChange={(e) => FilterByDetailsInputHandler(e, filterBy, true)}
+								onChange={(e) => SetFilterDetailsHandler(e, setFilterDetail)}
+								value={filterDetail}
 							>
 								<option value="All">All</option>
 								<option value="true">Yes</option>
@@ -240,9 +170,15 @@ export default function Home({ data }) {
 							""
 						)}
 					</div>
+					<button
+						className="bg-blue-600 p-1.5 rounded text-white font-medium"
+						onClick={TriggerSortAndFilterHandler}
+					>
+						Submit
+					</button>
 				</div>
 			</div>
-			<BikeGallery displayData={displayData} sortKey={sortKey} />
+			<BikeGallery displayData={displayData} sortKey={displaySortKey} />
 		</Layout>
 	);
 }
