@@ -106,26 +106,28 @@ export default function Home({ data }) {
 				<title>Ride 4 - Bikes</title>
 			</Head>
 			<div className="mb-6">
-				<div>
+				<div className="flex items-center justify-center flex-col gap-2 sm:gap-0 sm:flex-row sm:justify-start">
 					<label className="mr-2">Sort by:</label>
-					<select className="p-2 rounded-l" onChange={SortByInputHandler}>
-						<option value="make">Make</option>
-						<option value="year">Year</option>
-						<option value="displacement">Displacement</option>
-						<option value="power">Power</option>
-						<option value="torque">Torque</option>
-						<option value="weight">Weight</option>
-						<option value="price">Price</option>
-						<option value="rating">Rating</option>
-						<option value="acceleration">Acceleration</option>
-						<option value="top-speed">Top speed</option>
-						<option value="handling">Handling</option>
-						<option value="braking-power">Braking power</option>
-					</select>
-					<select className="p-2 rounded-r" onChange={SortOrderInputHandler}>
-						<option value="accending">Accending</option>
-						<option value="descending">Descending</option>
-					</select>
+					<div>
+						<select className="p-2 rounded-l" onChange={SortByInputHandler}>
+							<option value="make">Make</option>
+							<option value="year">Year</option>
+							<option value="displacement">Displacement</option>
+							<option value="power">Power</option>
+							<option value="torque">Torque</option>
+							<option value="weight">Weight</option>
+							<option value="price">Price</option>
+							<option value="rating">Rating</option>
+							<option value="acceleration">Acceleration</option>
+							<option value="top-speed">Top speed</option>
+							<option value="handling">Handling</option>
+							<option value="braking-power">Braking power</option>
+						</select>
+						<select className="p-2 rounded-r" onChange={SortOrderInputHandler}>
+							<option value="accending">Accending</option>
+							<option value="descending">Descending</option>
+						</select>
+					</div>
 				</div>
 			</div>
 			<BikeGallery displayData={displayData} sortKey={sortKey} />
