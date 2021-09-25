@@ -96,7 +96,7 @@ export default function Home({ data }) {
 							<option value="braking-power">Braking power</option>
 						</select>
 						<select
-							className="p-2 rounded-r"
+							className="p-2 rounded-r bg-white"
 							onChange={(e) => SetSortOrderHandler(e, setSortingOrder)}
 							value={sortingOrder}
 						>
@@ -109,7 +109,7 @@ export default function Home({ data }) {
 					<label className="mr-2">Filter by:</label>
 					<div className="mr-2">
 						<select
-							className="p-2 rounded-l"
+							className="p-2 rounded-l bg-white"
 							onChange={(e) =>
 								SetFilterByHandler(e, setFilterBy, setFilterDetail)
 							}
@@ -122,7 +122,7 @@ export default function Home({ data }) {
 						</select>
 						{filterBy === "make" ? (
 							<select
-								className="p-2 rounded-r"
+								className="p-2 rounded-r bg-white"
 								onChange={(e) => SetFilterDetailsHandler(e, setFilterDetail)}
 								value={filterDetail}
 							>
@@ -138,7 +138,7 @@ export default function Home({ data }) {
 						)}
 						{filterBy === "type" ? (
 							<select
-								className="p-2 rounded-r"
+								className="p-2 rounded-r bg-white"
 								onChange={(e) => SetFilterDetailsHandler(e, setFilterDetail)}
 								value={filterDetail}
 							>
@@ -158,7 +158,7 @@ export default function Home({ data }) {
 						)}
 						{filterBy === "dlc" || filterBy === "legendary" ? (
 							<select
-								className="p-2 rounded-r"
+								className="p-2 rounded-r bg-white"
 								onChange={(e) => SetFilterDetailsHandler(e, setFilterDetail)}
 								value={filterDetail}
 							>
