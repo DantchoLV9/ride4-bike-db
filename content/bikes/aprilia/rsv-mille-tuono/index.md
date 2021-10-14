@@ -6,7 +6,7 @@ acceleration: 6.29
 top-speed: 5.95
 handling: 5.38
 braking-power: 6.35
-displacement: 993
+displacement: 997
 engine: ["2 Cylinders", "4 Stroke"]
 power: 126
 weight: 210
@@ -16,5 +16,5 @@ type: naked
 price: 66500
 rating: 676
 legendary: false
-dlc: false
+dlc: true
 ---
