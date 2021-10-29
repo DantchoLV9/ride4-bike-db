@@ -16,5 +16,5 @@ type: sport
 price: 129500
 rating: 677
 legendary: false
-dlc: false
+dlc: true
 ---
