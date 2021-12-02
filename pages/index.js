@@ -37,7 +37,7 @@ export default function Home({ data }) {
 				}, {}),
 		})
 	);
-
+	const bikeAmount = allBikes.length;
 	const [displayData, setDisplayData] = useState(
 		SortData(allBikes, "make").reverse()
 	);
@@ -46,7 +46,6 @@ export default function Home({ data }) {
 	const [displaySortKey, setDisplaySortKey] = useState("make");
 	const [filterBy, setFilterBy] = useState("make");
 	const [filterDetail, setFilterDetail] = useState("All");
-
 	const TriggerSortAndFilterHandler = () => {
 		let data;
 		if (filterBy === "dlc" || filterBy === "legendary") {
@@ -68,12 +67,13 @@ export default function Home({ data }) {
 		setDisplaySortKey(sortKey);
 		setDisplayData(data);
 	};
+	const currentBikeAmount = displayData.length;
 	return (
 		<Layout>
 			<Head>
 				<title>Ride 4 - Bikes</title>
 			</Head>
-			<div className="mb-6 flex flex-col items-center justify-between lg:flex-row gap-y-2">
+			<div className="mb-4 flex flex-col items-center justify-between lg:flex-row gap-y-2">
 				<div className="flex items-center justify-center flex-col gap-2 sm:gap-0 sm:flex-row sm:justify-start">
 					<label className="mr-2">Sort by:</label>
 					<div>
@@ -177,6 +177,12 @@ export default function Home({ data }) {
 						Submit
 					</button>
 				</div>
+			</div>
+			<div className="mb-4 flex justify-center lg:justify-end">
+				<p>
+					Showing <span className="font-bold">{currentBikeAmount}</span> out of{" "}
+					{bikeAmount} bikes
+				</p>
 			</div>
 			<BikeGallery displayData={displayData} sortKey={displaySortKey} />
 		</Layout>
