@@ -107,7 +107,10 @@ export default function Bike({ bikeData }) {
 								<div>
 									<h4 className="font-medium">Engine</h4>
 									<div>
-										{bikeData.engine[0]} | {bikeData.engine[1]}
+										{bikeData.engine[0]}
+										{bikeData.engine.length > 1
+											? ` | ${bikeData.engine[1]}`
+											: ``}
 									</div>
 								</div>
 								<div>

@@ -16,5 +16,5 @@ type: sport racing modified
 price: 246300
 rating: 796
 legendary: false
-dlc: false
+dlc: true
 ---

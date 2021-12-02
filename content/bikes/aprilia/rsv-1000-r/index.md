@@ -1,6 +1,6 @@
 ---
 make: Aprilia
-model: RSV 1000 R
+model: RSV 1000 R (2003)
 year: 2003
 acceleration: 7.66
 top-speed: 6.73
